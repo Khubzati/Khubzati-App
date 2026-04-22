@@ -11,6 +11,12 @@ A dedicated customer-facing and partner-facing web experience for Khubzati, buil
 - `/app` Customer app + store app route map
 - `/contact` Partnership onboarding information
 
+## Language behavior
+
+- Default language is Arabic (`ar`) with RTL direction.
+- Users can switch between Arabic and English from the top navbar.
+- Language preference is saved in browser local storage.
+
 ## Run locally
 
 ```bash
@@ -19,4 +25,4 @@ npm install
 npm run dev
 ```
 
-Website runs on `http://localhost:3003`.
+Website runs on `http://localhost:3004` by default.

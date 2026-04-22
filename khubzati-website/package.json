@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3003",
+    "dev": "next dev -p ${PORT:-3004}",
     "build": "next build",
-    "start": "next start -p 3003",
-    "lint": "next lint"
+    "start": "next start -p ${PORT:-3004}",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "14.2.5",
+    "next": "^16.2.4",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
@@ -17,8 +17,8 @@
     "@types/node": "20.14.12",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.5",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.2.4",
     "typescript": "5.5.4"
   }
 }

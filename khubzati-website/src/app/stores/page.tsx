@@ -1,19 +1,16 @@
+"use client";
+
 import { SectionTitle } from "@/components/section-title";
 import { StoreExplorer } from "@/components/store-explorer";
-
-export const metadata = {
-  title: "Store Explorer"
-};
+import { useLanguage } from "@/i18n/language-context";
 
 export default function StoresPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="stack-lg">
       <section className="section card stack">
-        <SectionTitle
-          eyebrow="Store Routing"
-          title="Browse Khubzati partner stores"
-          description="Filter by category and search by city, name, or specialty to find the right store fast."
-        />
+        <SectionTitle eyebrow={t.stores.eyebrow} title={t.stores.pageTitle} description={t.stores.pageDescription} />
       </section>
 
       <StoreExplorer />

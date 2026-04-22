@@ -1,49 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import { SectionTitle } from "@/components/section-title";
-
-export const metadata = {
-  title: "App Route Map"
-};
-
-const customerFlow = [
-  "Discover nearby stores based on city and specialty",
-  "Select items and preferred delivery timing",
-  "Receive live prep + route updates",
-  "Track handoff and confirm warm delivery"
-];
-
-const storeFlow = [
-  "Receive routed orders grouped by prep window",
-  "Accept or adjust capacity in one tap",
-  "Prepare batches with timing assistant",
-  "Dispatch with clear delivery handoff status"
-];
+import { useLanguage } from "@/i18n/language-context";
 
 export default function AppRoutePage() {
+  const { t } = useLanguage();
+
   return (
     <div className="stack-lg">
       <section className="section card stack">
         <SectionTitle
-          eyebrow="Routing Architecture"
-          title="Customer app and store app working as one system"
-          description="Khubzati separates customer and store experiences while keeping both synchronized through routing logic."
+          eyebrow={t.appRoutes.eyebrow}
+          title={t.appRoutes.pageTitle}
+          description={t.appRoutes.pageDescription}
         />
       </section>
 
       <section className="section flow-grid">
         <article className="card stack">
-          <h3>Customer App Route</h3>
+          <h3>{t.appRoutes.customerTitle}</h3>
           <ol className="numbered-list">
-            {customerFlow.map((step) => (
+            {t.appRoutes.customerFlow.map((step) => (
               <li key={step}>{step}</li>
             ))}
           </ol>
         </article>
 
         <article className="card stack">
-          <h3>Store App Route</h3>
+          <h3>{t.appRoutes.storeTitle}</h3>
           <ol className="numbered-list">
-            {storeFlow.map((step) => (
+            {t.appRoutes.storeFlow.map((step) => (
               <li key={step}>{step}</li>
             ))}
           </ol>
@@ -51,20 +38,19 @@ export default function AppRoutePage() {
       </section>
 
       <section className="section card stack">
-        <h2>How this website supports both apps</h2>
+        <h2>{t.appRoutes.supportTitle}</h2>
         <ul className="list">
-          <li>Explains Khubzati clearly for users, stores, and partners</li>
-          <li>Provides discoverable store pages with clean route details</li>
-          <li>Creates a direct onboarding path for new stores</li>
-          <li>Acts as launch-ready brand foundation for mobile app growth</li>
+          {t.appRoutes.supportPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
         </ul>
 
         <div className="button-row">
           <Link href="/stores" className="button button--ghost">
-            Open Stores
+            {t.appRoutes.openStores}
           </Link>
           <Link href="/contact" className="button">
-            Start Onboarding
+            {t.appRoutes.startOnboarding}
           </Link>
         </div>
       </section>

@@ -30,6 +30,16 @@ body {
   overflow-x: hidden;
 }
 
+html[lang="ar"] body {
+  font-family: var(--font-arabic), var(--font-body), "Segoe UI", sans-serif;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3 {
+  font-family: var(--font-arabic), var(--font-body), "Segoe UI", sans-serif;
+}
+
 .site-bg {
   position: fixed;
   inset: 0;
@@ -229,6 +239,14 @@ p {
   gap: 0.4rem;
 }
 
+.top-nav__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
 .top-nav__link {
   padding: 0.45rem 0.75rem;
   border-radius: 999px;
@@ -246,6 +264,30 @@ p {
   background: rgba(191, 121, 66, 0.2);
   color: var(--brand-dark);
   font-weight: 700;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(160, 107, 63, 0.32);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lang-switch__btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.42rem 0.66rem;
+  cursor: pointer;
+}
+
+.lang-switch__btn.is-active {
+  background: rgba(190, 121, 67, 0.24);
+  color: var(--brand-dark);
 }
 
 .hero {
@@ -427,6 +469,12 @@ p {
   gap: 0.45rem;
 }
 
+html[dir="rtl"] .numbered-list,
+html[dir="rtl"] .list {
+  padding-left: 0;
+  padding-right: 1.1rem;
+}
+
 .flow-grid > * {
   grid-column: span 6;
 }
@@ -527,6 +575,11 @@ p {
   .top-nav {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .top-nav__actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .site-footer__links {

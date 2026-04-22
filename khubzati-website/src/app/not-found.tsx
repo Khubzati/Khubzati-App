@@ -1,13 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/i18n/language-context";
 
 export default function NotFound() {
+  const { t } = useLanguage();
+
   return (
     <section className="section card stack">
       <p className="eyebrow">404</p>
-      <h1>Page not found</h1>
-      <p className="muted">This route does not exist yet. You can continue from the store explorer.</p>
+      <h1>{t.notFound.title}</h1>
+      <p className="muted">{t.notFound.description}</p>
       <Link href="/stores" className="button">
-        Go to Stores
+        {t.notFound.goStores}
       </Link>
     </section>
   );

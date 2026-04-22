@@ -1,43 +1,39 @@
+"use client";
+
 import Link from "next/link";
 import { SectionTitle } from "@/components/section-title";
-
-export const metadata = {
-  title: "Partner With Khubzati"
-};
+import { useLanguage } from "@/i18n/language-context";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="stack-lg">
       <section className="section card stack">
-        <SectionTitle
-          eyebrow="Store Onboarding"
-          title="Join Khubzati as a bakery, restaurant, or cafe"
-          description="We help local stores launch faster with better digital visibility and smarter order routing."
-        />
+        <SectionTitle eyebrow={t.contact.eyebrow} title={t.contact.pageTitle} description={t.contact.pageDescription} />
       </section>
 
       <section className="section contact-grid">
         <article className="card stack contact-card">
-          <h3>Partnership Team</h3>
-          <p className="muted">Share your store profile and we will contact you with the onboarding checklist.</p>
+          <h3>{t.contact.teamTitle}</h3>
+          <p className="muted">{t.contact.teamDescription}</p>
           <p>
             Email: <a href="mailto:partners@khubzati.com">partners@khubzati.com</a>
           </p>
           <p>
-            Sales line: <a href="tel:+962790000000">+962 79 000 0000</a>
+            {t.contact.salesLine}: <a href="tel:+962790000000">+962 79 000 0000</a>
           </p>
           <Link href="/stores" className="button button--ghost">
-            View Live Store Examples
+            {t.contact.viewExamples}
           </Link>
         </article>
 
         <article className="card stack contact-card">
-          <h3>What to prepare</h3>
+          <h3>{t.contact.prepareTitle}</h3>
           <ul className="list">
-            <li>Store identity and location coverage</li>
-            <li>Menu categories and top products</li>
-            <li>Daily open hours and prep capacity</li>
-            <li>Preferred launch timeline</li>
+            {t.contact.preparePoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
           </ul>
         </article>
       </section>
