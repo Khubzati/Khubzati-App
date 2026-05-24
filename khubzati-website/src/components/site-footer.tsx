@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/i18n/language-context";
 
@@ -10,7 +11,14 @@ export function SiteFooter() {
     <footer className="site-footer-wrap">
       <div className="site-footer container">
         <div>
-          <p className="site-footer__title">Khubzati</p>
+          <p className="site-footer__title">
+            <span className="site-footer__brand">
+              <span className="site-footer__logo-wrap" aria-hidden="true">
+                <Image src="/khubzati-logo.svg" alt="" width={44} height={27} className="site-footer__logo" />
+              </span>
+              <span>Khubzati</span>
+            </span>
+          </p>
           <p className="muted">{t.footer.description}</p>
         </div>
 

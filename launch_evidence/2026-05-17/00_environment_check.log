@@ -1,0 +1,13 @@
+# Environment capability check
+Sat May 16 22:55:21 UTC 2026
+\n## Tool availability
+/opt/homebrew/bin/psql
+/opt/homebrew/bin/pg_dump
+/opt/homebrew/bin/pg_restore
+\n## Relevant env var presence (values redacted)
+DATABASE_URL=<empty>
+DIRECT_URL=<empty>
+SLA_ALERT_WEBHOOK_URL=<empty>
+SLA_ALERT_WEBHOOK_SECRET=<empty>
+ADMIN_EMAIL=<empty>
+ADMIN_PASSWORD=<empty>

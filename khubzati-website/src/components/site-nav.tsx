@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/i18n/language-context";
@@ -25,10 +26,17 @@ export function SiteNav() {
     <header className="top-nav-wrap">
       <nav className="top-nav container" aria-label="Primary navigation">
         <Link href="/" className="brand">
-          <span className="brand__mark" aria-hidden="true">
-            KH
+          <span className="brand__logo-wrap" aria-hidden="true">
+            <Image
+              src="/khubzati-logo.svg"
+              alt=""
+              width={52}
+              height={32}
+              priority
+              className="brand__logo"
+            />
           </span>
-          <span>
+          <span className="brand__text">
             Khubzati
             <small>{t.nav.brandSubtitle}</small>
           </span>

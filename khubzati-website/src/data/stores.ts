@@ -12,6 +12,7 @@ export type Store = {
   name: LocalizedText;
   city: LocalizedText;
   neighborhood: LocalizedText;
+  imageUrl?: string | null;
   category: StoreCategory;
   rating: number;
   etaMinutes: number;

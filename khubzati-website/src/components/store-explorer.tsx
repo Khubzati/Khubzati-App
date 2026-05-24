@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { StoreCard } from "@/components/store-card";
-import { storeCategories, StoreCategory, stores } from "@/data/stores";
+import { fetchStores } from "@/data/store-service";
+import { Store, storeCategories, StoreCategory, stores as fallbackStores } from "@/data/stores";
 import { useLanguage } from "@/i18n/language-context";
 
 type CategoryFilter = "all" | StoreCategory;
@@ -10,12 +11,31 @@ type CategoryFilter = "all" | StoreCategory;
 export function StoreExplorer() {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
+  const [allStores, setAllStores] = useState<Store[]>(fallbackStores);
   const { language, t } = useLanguage();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchStores()
+      .then((storesFromApi) => {
+        if (isMounted) {
+          setAllStores(storesFromApi);
+        }
+      })
+      .catch(() => {
+        // Keep fallback stores when backend is unavailable.
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filteredStores = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return stores.filter((store) => {
+    return allStores.filter((store) => {
       const matchesCategory = selectedCategory === "all" || store.category === selectedCategory;
       const matchesQuery =
         normalizedQuery.length === 0 ||
@@ -26,7 +46,7 @@ export function StoreExplorer() {
 
       return matchesCategory && matchesQuery;
     });
-  }, [query, selectedCategory, language]);
+  }, [allStores, query, selectedCategory, language]);
 
   return (
     <section className="section stack">

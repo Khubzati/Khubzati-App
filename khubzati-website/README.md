@@ -26,3 +26,11 @@ npm run dev
 ```
 
 Website runs on `http://localhost:3004` by default.
+
+## CI Gate
+
+```bash
+npm ci
+npm run lint
+npm run build
+```

@@ -1,0 +1,6 @@
+# Project-scoped MCP configuration for Codex.
+# Figma uses OAuth when you first connect.
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+enabled = true

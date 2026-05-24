@@ -1,0 +1,36 @@
+# DNS + health probe
+Sat May 16 22:55:21 UTC 2026
+\n===== HOST: staging-api.khubzati.com =====
+-- DNS lookup
+\n--- curl https://staging-api.khubzati.com/health
+curl: (6) Could not resolve host: staging-api.khubzati.com
+[body]
+\n--- curl https://staging-api.khubzati.com/ready
+curl: (6) Could not resolve host: staging-api.khubzati.com
+[body]
+\n--- curl https://staging-api.khubzati.com/health/workers
+curl: (6) Could not resolve host: staging-api.khubzati.com
+[body]
+\n--- curl https://staging-api.khubzati.com/health/workers/kpi
+curl: (6) Could not resolve host: staging-api.khubzati.com
+[body]
+\n--- curl https://staging-api.khubzati.com/metrics/queues
+curl: (6) Could not resolve host: staging-api.khubzati.com
+[body]
+\n===== HOST: api.khubzati.com =====
+-- DNS lookup
+\n--- curl https://api.khubzati.com/health
+curl: (6) Could not resolve host: api.khubzati.com
+[body]
+\n--- curl https://api.khubzati.com/ready
+curl: (6) Could not resolve host: api.khubzati.com
+[body]
+\n--- curl https://api.khubzati.com/health/workers
+curl: (6) Could not resolve host: api.khubzati.com
+[body]
+\n--- curl https://api.khubzati.com/health/workers/kpi
+curl: (6) Could not resolve host: api.khubzati.com
+[body]
+\n--- curl https://api.khubzati.com/metrics/queues
+curl: (6) Could not resolve host: api.khubzati.com
+[body]
