@@ -1,0 +1,9 @@
+[submodule "Khubzati-backend-apis"]
+	path = Khubzati-backend-apis
+	url = git@github.com:Khubzati/Khubzati-backend-apis.git
+[submodule "admin"]
+	path = admin
+	url = git@github.com:Khubzati/admin.git
+[submodule "khubzati-app"]
+	path = khubzati-app
+	url = git@github.com:DianaAlghazawi/khubzati-app.git
