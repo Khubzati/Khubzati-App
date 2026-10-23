@@ -11,6 +11,9 @@ coverage/
 .env
 .env.*
 !.env.example
+# Track env-specific public config (NEXT_PUBLIC_* is baked into the client bundle)
+!.env.development
+!.env.production
 
 # logs
 *.log
