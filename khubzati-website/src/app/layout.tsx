@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Lato } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { LanguageProvider } from "@/i18n/language-context";
@@ -134,6 +135,7 @@ export default function RootLayout({
           <main className="container page-content">{children}</main>
           <SiteFooter />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
