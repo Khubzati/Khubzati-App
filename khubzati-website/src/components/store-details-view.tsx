@@ -31,7 +31,7 @@ export function StoreDetailsView({ store }: StoreDetailsViewProps) {
         </div>
         {store.imageUrl ? (
           <div className="store-hero__logo-wrap">
-            <Image src={store.imageUrl} alt={`${localize(store.name, language)} logo`} width={220} height={140} unoptimized />
+          <Image src={store.imageUrl} alt={language === "ar" ? `شعار ${localize(store.name, language)}` : `${localize(store.name, language)} logo`} width={220} height={140} unoptimized />
           </div>
         ) : null}
       </section>
@@ -39,42 +39,21 @@ export function StoreDetailsView({ store }: StoreDetailsViewProps) {
       <section className="section card stack">
         <h2>{t.storeDetails.detailsTitle}</h2>
         <div className="meta-grid">
-          <div>
-            <span>{t.storeDetails.city}</span>
-            <p>
-              {localize(store.city, language)}
-              {language === "ar" ? "، " : ", "}
-              {localize(store.neighborhood, language)}
-            </p>
-          </div>
-          <div>
-            <span>{t.storeDetails.eta}</span>
-            <p>
-              {store.etaMinutes} {t.storeDetails.minutes}
-            </p>
-          </div>
-          <div>
-            <span>{t.storeDetails.openHours}</span>
-            <p>{localize(store.openHours, language)}</p>
-          </div>
-          <div>
-            <span>{t.storeDetails.deliveryDays}</span>
-            <p>{localize(store.deliveryDays, language)}</p>
-          </div>
-          <div>
-            <span>{t.storeDetails.customerRating}</span>
-            <p>{store.rating.toFixed(1)} / 5</p>
-          </div>
+          {store.city || store.neighborhood ? <div><span>{t.storeDetails.city}</span><p>{[store.neighborhood, store.city].filter(Boolean).map((value) => localize(value!, language)).join(language === "ar" ? "، " : ", ")}</p></div> : null}
+          {store.etaMinutes ? <div><span>{t.storeDetails.eta}</span><p>{store.etaMinutes} {t.storeDetails.minutes}</p></div> : null}
+          {store.openHours.en !== "Not provided" ? <div><span>{t.storeDetails.openHours}</span><p>{localize(store.openHours, language)}</p></div> : null}
+          {store.deliveryDays ? <div><span>{t.storeDetails.deliveryDays}</span><p>{localize(store.deliveryDays, language)}</p></div> : null}
+          {store.rating ? <div><span>{t.storeDetails.customerRating}</span><p>{store.rating.toFixed(1)} / 5</p></div> : null}
         </div>
 
-        <div>
+        {store.specialties.length ? <div>
           <h3>{t.storeDetails.specialties}</h3>
           <p className="store-card__chips">
             {store.specialties.map((specialty) => (
               <span key={specialty.en}>{localize(specialty, language)}</span>
             ))}
           </p>
-        </div>
+        </div> : null}
 
         <div className="button-row">
           <Link

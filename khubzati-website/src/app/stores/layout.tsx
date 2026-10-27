@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Stores",
-  description:
-    "Explore verified bakeries, restaurants, and cafes available on Khubzati, with route-friendly delivery coverage across Jordan.",
+  title: "المخابز والمطاعم المحلية",
+  description: "تصفح المخابز والمطاعم المنشورة حاليًا على خبزاتي وابحث حسب الاسم أو المدينة أو الفئة.",
   alternates: {
     canonical: "/stores"
   }

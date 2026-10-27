@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "App Routes",
-  description:
-    "See the Khubzati customer and merchant journey, from store discovery and ordering to fulfillment and delivery operations.",
+  title: "كيف يعمل خبزاتي",
+  description: "تعرف على مسارات استكشاف المتاجر وتجربة العميل والشريك عبر تطبيقات خبزاتي.",
   alternates: {
     canonical: "/app"
   }

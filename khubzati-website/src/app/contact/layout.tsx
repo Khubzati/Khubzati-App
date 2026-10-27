@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Khubzati for onboarding, partnerships, and support for bakery, restaurant, and cafe delivery workflows.",
+  title: "تواصل وشراكة",
+  description: "تواصل مع فريق خبزاتي للاستفسار عن انضمام المخابز والمطاعم المحلية.",
   alternates: {
     canonical: "/contact"
   }

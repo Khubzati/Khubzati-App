@@ -1,19 +1,14 @@
-"use client";
-
-import { SectionTitle } from "@/components/section-title";
+import { StoreDirectoryIntro } from "@/components/store-directory-intro";
 import { StoreExplorer } from "@/components/store-explorer";
-import { useLanguage } from "@/i18n/language-context";
+import { fetchStores } from "@/data/store-service";
 
-export default function StoresPage() {
-  const { t } = useLanguage();
+export default async function StoresPage() {
+  const stores = await fetchStores().catch(() => null);
 
   return (
     <div className="stack-lg">
-      <section className="section card stack">
-        <SectionTitle eyebrow={t.stores.eyebrow} title={t.stores.pageTitle} description={t.stores.pageDescription} />
-      </section>
-
-      <StoreExplorer />
+      <StoreDirectoryIntro />
+      <StoreExplorer initialStores={stores} />
     </div>
   );
 }

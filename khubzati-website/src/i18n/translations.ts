@@ -123,7 +123,7 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
       home: "الرئيسية",
       about: "عن خبزاتي",
       stores: "المتاجر",
-      appRoutes: "مسارات التطبيق",
+      appRoutes: "كيف يعمل خبزاتي",
       partner: "شراكة",
       brandSubtitle: "شبكة الخبز المحلي"
     },
@@ -135,96 +135,94 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
     categories: {
       bakery: "مخبز",
       restaurant: "مطعم",
-      cafe: "مقهى"
     },
     footer: {
-      description: "ربط المخابز والمطاعم والمقاهي المحلية بمسارات توصيل أسرع وتجربة أفضل.",
+      description: "اكتشف المخابز والمطاعم المحلية وتعرّف على المتاجر المتاحة على خبزاتي.",
       about: "عن خبزاتي",
       stores: "المتاجر",
       appRoutes: "مسارات التطبيق",
       partner: "شراكة"
     },
     home: {
-      eyebrow: "موقع خبزاتي",
-      title: "منصة واحدة لخبز الحي، ومتاجر الطعام، وتجربة طلب متكاملة.",
+      eyebrow: "خبزاتي · طازج من حارتك",
+      title: "خبز الحارة الطازج، أقرب إليك من أي وقت.",
       description:
-        "خبزاتي منصة تجارة محلية تربط المخابز والمطاعم والمقاهي بالعملاء عبر توجيه ذكي للطلبات وتجربة استخدام عالية الجودة.",
+        "خبزاتي تساعدك على اكتشاف المخابز والمطاعم المحلية والتعرّف على المتاجر المتاحة.",
       exploreStores: "استكشف المتاجر",
-      appMap: "عرض خريطة مسارات التطبيق",
+      appMap: "انضم كشريك",
       statOneLabel: "متوسط وقت توجيه الطلب إلى المتجر",
       statTwoLabel: "مستوى تقييم جودة المتاجر",
       statThreeLabel: "مدن جاهزة للتوسع التجريبي",
       whyEyebrow: "لماذا خبزاتي",
       whyTitle: "مصمم لخدمة العميل وتشغيل المتجر في نفس الوقت",
-      whyDescription: "ليست مجرد قائمة طلبات. بل نظام تشغيل وتوصيل مبني على واقع تجهيز الخبز والوجبات الطازجة.",
+      whyDescription: "تجربة تساعد العملاء على اكتشاف المتاجر المحلية وتساعد المتاجر على تقديم معلوماتها بوضوح.",
       highlights: [
-        "توجيه الطلبات حسب سرعة التحضير، المسافة، وتوقيت الفرن حتى يصل الخبز ساخنًا.",
-        "لوحة تشغيل للمتجر تعطي رؤية أوضح للطلبات ونوافذ التحضير والطلبات المتكررة.",
-        "تعزيز الثقة بين أهل الحي والمتاجر عبر التزام أوضح بالمواعيد وجودة الخدمة."
+        "اكتشاف المخابز والمطاعم المنشورة ضمن دليل واحد.",
+        "صفحة متجر تعرض المعلومات المتوفرة من بيانات الشريك.",
+        "مسار تواصل مباشر للمتاجر الراغبة بالاستفسار عن الشراكة."
       ],
       topStoresEyebrow: "أفضل المتاجر",
-      topStoresTitle: "شركاء جاهزون للتشغيل الرقمي",
-      topStoresDescription: "نماذج متاجر يمكن لخبزاتي تشغيلها وتوجيه طلباتها بتجربة مميزة.",
+      topStoresTitle: "متاجر متاحة على خبزاتي",
+      topStoresDescription: "المتاجر المعروضة تُحمّل من بيانات المنصة مباشرة.",
       nextStepEyebrow: "الخطوة التالية",
-      nextStepTitle: "إطلاق حضور ويب كامل لخبزاتي للعملاء والمتاجر.",
-      nextStepDescription:
-        "هذا المشروع يتضمن الهيكل الأساسي للموقع، ونظام التصميم، ومسارات المتاجر ليستمر فريقك نحو التكامل مع APIs والإطلاق الإنتاجي.",
+      nextStepTitle: "هل تدير مخبزًا أو مطعمًا محليًا؟",
+      nextStepDescription: "تواصل مع فريق خبزاتي للاستفسار عن خطوات الشراكة المتاحة حاليًا.",
       startOnboarding: "ابدأ انضمام المتاجر"
     },
     about: {
       title: "عن خبزاتي",
       whatEyebrow: "ما هو خبزاتي",
       whatTitle: "خبزاتي شبكة رقمية للخبز الطازج وطعام الأحياء",
-      whatDescription: "الاسم مستوحى من ثقافة الخبز اليومي وعلاقة الناس بالمخبز المحلي.",
+      whatDescription: "منصة محلية تساعد الناس على اكتشاف المخابز والمطاعم والتعرّف عليها.",
       whatParagraph:
-        "خبزاتي يساعد العملاء على اكتشاف المتاجر الموثوقة، ويمنح المخابز والمطابخ تحكمًا أفضل في التوجيه والتشغيل اليومي.",
+        "خبزاتي يجمع اكتشاف المتاجر المحلية ومعلوماتها، ويربط حضورها الرقمي بمسارات التطبيق المتاحة للعملاء والشركاء.",
       principlesEyebrow: "مبادئ أساسية",
       principlesTitle: "مبني على واقع تشغيل المطابخ",
-      principlesDescription: "واجهة ممتازة لا تعني الشكل فقط، بل تعني أيضًا وضوح التحضير، وثقة التوصيل، وتواصلًا واضحًا.",
+      principlesDescription: "نركز على اكتشاف بسيط، ومعلومات واضحة، ومسار تواصل مباشر للمتاجر.",
       principles: [
         {
           title: "سوق محلي أولًا",
           text: "خبزاتي يعزز ظهور متاجر الأحياء بدل أن تضيع داخل قوائم توصيل عامة."
         },
         {
-          title: "منطق توصيل يحافظ على السخونة",
-          text: "المسارات تُبنى حسب وقت التجهيز وتوقيت الفرن، وهذا أساسي لجودة الخبز وثقة العميل."
+          title: "اكتشاف محلي",
+          text: "مساحة واضحة للمخابز والمطاعم المحلية كي تظهر أمام العملاء الباحثين عن خيارات قريبة."
         },
         {
           title: "تمكين المتجر",
-          text: "المنصة تمنح المتجر تدفق طلبات أوضح، وتخطيط سعة أفضل، وهوية رقمية احترافية."
+          text: "تمنح صفحة المتجر الشريك حضورًا واضحًا ضمن دليل خبزاتي."
         }
       ],
       valueEyebrow: "القيمة",
       valueTitle: "ماذا يقدم خبزاتي",
-      valueDescription: "للعميل: جودة أعلى وثبات بالتوصيل. للمتجر: نمو محلي قابل للتوسع.",
+      valueDescription: "للعميل: اكتشاف أسهل. وللمتجر: حضور رقمي ومسار تواصل واضح.",
       valuePoints: [
         "اكتشاف أسرع للمتاجر حسب المدينة والتخصص",
-        "توجيه أوضح للطلبات بين تطبيق العميل وتطبيق المتجر",
-        "مسار انضمام واضح للمخابز والمقاهي",
+        "معلومات متجر واضحة عندما تكون متاحة",
+        "مسار انضمام واضح للمخابز والمطاعم",
         "هوية بصرية حديثة وقريبة من ثقافة الحي"
       ]
     },
     stores: {
       title: "استكشاف المتاجر",
       eyebrow: "توجيه المتاجر",
-      pageTitle: "تصفح متاجر خبزاتي الشريكة",
+      pageTitle: "تصفح المخابز والمطاعم المتاحة",
       pageDescription: "ابحث بالاسم أو المدينة أو التخصص، وصنّف حسب نوع المتجر.",
       searchLabel: "ابحث عن متجر أو مدينة أو تخصص",
       searchPlaceholder: "مثال: صاج، عمّان، كرواسون",
       all: "الكل",
       noMatchTitle: "لا يوجد نتائج مطابقة",
-      noMatchDescription: "جرّب إزالة الفلاتر أو البحث باسم مدينة مثل عمّان أو إربد أو العقبة.",
-      viewStoreRoute: "عرض مسار المتجر",
+      noMatchDescription: "جرّب إزالة الفلاتر أو استخدم اسمًا أو مدينة أخرى.",
+      viewStoreRoute: "عرض تفاصيل المتجر",
       rating: "تقييم"
     },
     storeDetails: {
       notFoundTitle: "المتجر غير موجود",
-      detailsTitle: "تفاصيل مسار المتجر",
+      detailsTitle: "معلومات المتجر",
       city: "المدينة",
-      eta: "متوسط زمن التوصيل",
+      eta: "وقت الطلب المتوقع",
       openHours: "ساعات العمل",
-      deliveryDays: "أيام التوصيل",
+      deliveryDays: "أيام التوفر",
       customerRating: "تقييم العملاء",
       specialties: "التخصصات",
       backToStores: "العودة للمتاجر",
@@ -235,20 +233,20 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
       title: "مسارات التطبيق",
       eyebrow: "هيكل التوجيه",
       pageTitle: "تطبيق العميل وتطبيق المتجر ضمن نظام واحد",
-      pageDescription: "خبزاتي يفصل بين تجربة العميل وتجربة المتجر، مع مزامنة كاملة عبر منطق التوجيه.",
+      pageDescription: "تعرف على رحلة استكشاف المتاجر وتجربة العميل والمتجر عبر تطبيق خبزاتي.",
       customerTitle: "مسار تطبيق العميل",
       storeTitle: "مسار تطبيق المتجر",
       customerFlow: [
         "اكتشاف المتاجر القريبة حسب المدينة والتخصص",
         "اختيار المنتجات ووقت التوصيل المناسب",
-        "استلام تحديثات التحضير والتوصيل لحظة بلحظة",
-        "متابعة التسليم وتأكيد وصول الطلب ساخنًا"
+        "مراجعة تفاصيل المتجر وخياراته المتاحة",
+        "إتمام الطلب عبر التطبيق عند توفر الخدمة"
       ],
       storeFlow: [
         "استلام الطلبات الموجهة حسب نافذة التحضير",
         "قبول الطلب أو تعديل السعة التشغيلية بسرعة",
-        "تجهيز الدُفعات بمساعدة توقيت واضحة",
-        "تسليم الطلب مع حالة تسليم دقيقة"
+        "متابعة الطلبات وفق الأدوات المتاحة في التطبيق",
+        "تجهيز الطلب وتسليمه وفق إجراءات المتجر"
       ],
       supportTitle: "كيف يخدم الموقع كلا التطبيقين",
       supportPoints: [
@@ -263,7 +261,7 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
     contact: {
       title: "شراكة مع خبزاتي",
       eyebrow: "انضمام المتاجر",
-      pageTitle: "انضم إلى خبزاتي كمخبز أو مطعم أو مقهى",
+      pageTitle: "انضم إلى خبزاتي كمخبز أو مطعم",
       pageDescription: "نساعد المتاجر المحلية على انطلاقة أسرع بظهور رقمي أقوى وتوجيه طلبات أذكى.",
       teamTitle: "فريق الشراكات",
       teamDescription: "شارك بيانات متجرك وسنتواصل معك بخطة الانضمام.",
@@ -288,7 +286,7 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
       home: "Home",
       about: "About Khubzati",
       stores: "Stores",
-      appRoutes: "App Routes",
+      appRoutes: "How it works",
       partner: "Partner",
       brandSubtitle: "Local Bread Network"
     },
@@ -300,92 +298,90 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
     categories: {
       bakery: "Bakery",
       restaurant: "Restaurant",
-      cafe: "Cafe"
     },
     footer: {
-      description: "Routing local bakeries, restaurants, and cafes with smarter delivery flows and better UX.",
+      description: "Discover local bakeries and restaurants listed on Khubzati.",
       about: "About",
       stores: "Stores",
       appRoutes: "App Routes",
       partner: "Partner"
     },
     home: {
-      eyebrow: "Khubzati Website",
-      title: "One platform for local bread, food stores, and delivery-ready journeys.",
+      eyebrow: "Khubzati · Fresh from your neighborhood",
+      title: "Fresh from your neighborhood. Made for your moments.",
       description:
-        "Khubzati connects bakeries, restaurants, and cafes to customers through intelligent order routing and premium experience design.",
+        "Khubzati brings your neighborhood's best bakeries, restaurants, and cafés together in one place — discover them, order, and enjoy it fresh.",
       exploreStores: "Explore Stores",
-      appMap: "View App Route Map",
+      appMap: "Become a Partner",
       statOneLabel: "Average order-to-store routing time",
       statTwoLabel: "Store quality rating baseline",
       statThreeLabel: "Cities ready for pilot expansion",
       whyEyebrow: "Why Khubzati",
       whyTitle: "Designed for customer experience and store operations together",
-      whyDescription: "Not just an order list. It is an operating and delivery system built around real fresh-food prep.",
+      whyDescription: "An experience that helps customers discover local businesses and helps stores present clear details.",
       highlights: [
-        "Orders are routed by prep speed, distance, and oven timing so bread arrives warm.",
-        "Store dashboards provide cleaner visibility for orders, prep waves, and repeat behavior.",
-        "Neighborhood trust is strengthened with predictable timing and transparent service quality."
+        "Discover listed bakeries and restaurants in one directory.",
+        "Store pages present information supplied through partner data.",
+        "A direct contact path for businesses interested in joining."
       ],
       topStoresEyebrow: "Top Stores",
-      topStoresTitle: "Trusted partners ready for digital routing",
-      topStoresDescription: "Preview the types of stores Khubzati can onboard and operate with premium UX.",
+      topStoresTitle: "Stores available on Khubzati",
+      topStoresDescription: "Listed businesses are loaded directly from platform data.",
       nextStepEyebrow: "Next Step",
-      nextStepTitle: "Launch Khubzati as a full customer + store web presence.",
-      nextStepDescription:
-        "This project includes a launch-ready website structure, design system, and store routing pages for future API integration.",
+      nextStepTitle: "Run a local bakery or restaurant?",
+      nextStepDescription: "Contact the Khubzati team to ask about the partnership steps currently available.",
       startOnboarding: "Start Store Onboarding"
     },
     about: {
       title: "About Khubzati",
       whatEyebrow: "What is Khubzati",
       whatTitle: "Khubzati is a digital network for fresh bread and neighborhood food",
-      whatDescription: "The name is inspired by daily bread culture and local food habits.",
+      whatDescription: "A local platform that helps people discover bakeries and restaurants.",
       whatParagraph:
-        "Khubzati helps customers discover trusted local stores while giving bakeries and kitchens better routing and operational control.",
+        "Khubzati brings local store discovery and business details together, connected to the app journeys available to customers and partners.",
       principlesEyebrow: "Core Principles",
       principlesTitle: "Built around real kitchen operations",
-      principlesDescription: "Great UX is not just visual. It is also prep clarity, delivery confidence, and transparent communication.",
+      principlesDescription: "We focus on simple discovery, clear information, and a direct contact path for local businesses.",
       principles: [
         {
           title: "Local-first marketplace",
           text: "Khubzati elevates neighborhood stores instead of burying them in generic delivery lists."
         },
         {
-          title: "Warm-delivery logic",
-          text: "Routes are designed around prep windows and oven timing to preserve food quality."
+          title: "Local discovery",
+          text: "A clear place for neighborhood bakeries and restaurants to be found by nearby customers."
         },
         {
           title: "Store enablement",
-          text: "The platform gives stores clearer order flow, demand planning, and premium digital identity."
+          text: "A store page gives partners a clear presence in the Khubzati directory."
         }
       ],
       valueEyebrow: "Value",
       valueTitle: "What Khubzati delivers",
-      valueDescription: "For customers: better reliability. For stores: scalable local growth.",
+      valueDescription: "For customers: easier discovery. For stores: a digital presence and a clear way to get in touch.",
       valuePoints: [
         "Faster store discovery by city and specialty",
-        "Cleaner routing between customer app and store app",
-        "Clear onboarding path for bakeries and cafes",
+        "Clear store details when available",
+        "Clear onboarding path for bakeries and restaurants",
         "Modern local brand presence"
       ]
     },
     stores: {
       title: "Store Explorer",
       eyebrow: "Store Routing",
-      pageTitle: "Browse Khubzati partner stores",
-      pageDescription: "Filter by category and search by city, name, or specialty.",
+      pageTitle: "Browse available bakeries and restaurants",
+      pageDescription: "Browse bakeries and restaurants currently listed on Khubzati.",
       searchLabel: "Search store, city, or specialty",
       searchPlaceholder: "Try: Saj, Amman, Croissant",
       all: "All",
       noMatchTitle: "No stores match",
-      noMatchDescription: "Try removing filters or searching with a city like Amman, Irbid, or Aqaba.",
-      viewStoreRoute: "View Store Route",
+      noMatchDescription: "Try removing a filter or searching for another name or city.",
+      viewStoreRoute: "View store details",
       rating: "rating"
     },
     storeDetails: {
       notFoundTitle: "Store not found",
-      detailsTitle: "Store route details",
+      detailsTitle: "Store information",
       city: "City",
       eta: "Average ETA",
       openHours: "Open Hours",
@@ -400,20 +396,20 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
       title: "App Route Map",
       eyebrow: "Routing Architecture",
       pageTitle: "Customer app and store app working as one system",
-      pageDescription: "Khubzati separates both experiences while synchronizing them through routing logic.",
+      pageDescription: "Explore the customer and store journeys through Khubzati’s apps.",
       customerTitle: "Customer App Route",
       storeTitle: "Store App Route",
       customerFlow: [
         "Discover nearby stores by city and specialty",
         "Select items and preferred delivery timing",
-        "Receive live prep and route updates",
-        "Track handoff and confirm warm delivery"
+        "Review store details and available options",
+        "Place an order through the app when service is available"
       ],
       storeFlow: [
         "Receive routed orders grouped by prep windows",
         "Accept orders or adjust capacity quickly",
-        "Prepare batches with clear timing guidance",
-        "Dispatch with precise handoff visibility"
+        "Manage orders through the tools available in the app",
+        "Prepare and hand off orders through the store’s process"
       ],
       supportTitle: "How this website supports both apps",
       supportPoints: [
@@ -428,8 +424,8 @@ export const translations: Record<"ar" | "en", TranslationShape> = {
     contact: {
       title: "Partner With Khubzati",
       eyebrow: "Store Onboarding",
-      pageTitle: "Join Khubzati as a bakery, restaurant, or cafe",
-      pageDescription: "We help local stores launch faster with stronger digital visibility and smarter routing.",
+      pageTitle: "Join Khubzati as a bakery or restaurant",
+      pageDescription: "Contact Khubzati to ask about joining as a local bakery or restaurant.",
       teamTitle: "Partnership Team",
       teamDescription: "Share your store profile and we will contact you with onboarding steps.",
       salesLine: "Sales line",

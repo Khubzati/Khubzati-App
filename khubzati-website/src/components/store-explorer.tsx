@@ -3,34 +3,33 @@
 import { useEffect, useMemo, useState } from "react";
 import { StoreCard } from "@/components/store-card";
 import { fetchStores } from "@/data/store-service";
-import { Store, storeCategories, StoreCategory, stores as fallbackStores } from "@/data/stores";
+import { Store, storeCategories, StoreCategory } from "@/data/stores";
 import { useLanguage } from "@/i18n/language-context";
 
 type CategoryFilter = "all" | StoreCategory;
 
-export function StoreExplorer() {
+export function StoreExplorer({ initialStores }: { initialStores: Store[] | null }) {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [allStores, setAllStores] = useState<Store[]>(fallbackStores);
+  const [allStores, setAllStores] = useState<Store[]>(initialStores ?? []);
+  const [hasError, setHasError] = useState(initialStores === null);
   const { language, t } = useLanguage();
 
   useEffect(() => {
-    let isMounted = true;
-
-    fetchStores()
-      .then((storesFromApi) => {
-        if (isMounted) {
-          setAllStores(storesFromApi);
-        }
-      })
-      .catch(() => {
-        // Keep fallback stores when backend is unavailable.
-      });
-
-    return () => {
-      isMounted = false;
-    };
+    const category = new URLSearchParams(window.location.search).get("category");
+    if (category === "bakery" || category === "restaurant") {
+      window.requestAnimationFrame(() => setSelectedCategory(category));
+    }
   }, []);
+
+  const retry = async () => {
+    setHasError(false);
+    try {
+      setAllStores(await fetchStores());
+    } catch {
+      setHasError(true);
+    }
+  };
 
   const filteredStores = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -40,8 +39,8 @@ export function StoreExplorer() {
       const matchesQuery =
         normalizedQuery.length === 0 ||
         store.name[language].toLowerCase().includes(normalizedQuery) ||
-        store.city[language].toLowerCase().includes(normalizedQuery) ||
-        store.neighborhood[language].toLowerCase().includes(normalizedQuery) ||
+        (store.city?.[language].toLowerCase().includes(normalizedQuery) ?? false) ||
+        (store.neighborhood?.[language].toLowerCase().includes(normalizedQuery) ?? false) ||
         store.specialties.some((item) => item[language].toLowerCase().includes(normalizedQuery));
 
       return matchesCategory && matchesQuery;
@@ -50,7 +49,7 @@ export function StoreExplorer() {
 
   return (
     <section className="section stack">
-      <div className="filters card">
+      <div className="filters card" id="explore">
         <label className="field">
           {t.stores.searchLabel}
           <input
@@ -61,9 +60,10 @@ export function StoreExplorer() {
           />
         </label>
 
-        <div className="chip-row" role="tablist" aria-label={t.stores.title}>
+        <div className="chip-row" role="group" aria-label={t.stores.title}>
           <button
             type="button"
+            aria-pressed={selectedCategory === "all"}
             className={selectedCategory === "all" ? "chip is-active" : "chip"}
             onClick={() => setSelectedCategory("all")}
           >
@@ -72,6 +72,7 @@ export function StoreExplorer() {
           {storeCategories.map((category) => (
             <button
               key={category}
+              aria-pressed={selectedCategory === category}
               type="button"
               className={selectedCategory === category ? "chip is-active" : "chip"}
               onClick={() => setSelectedCategory(category)}
@@ -82,11 +83,22 @@ export function StoreExplorer() {
         </div>
       </div>
 
-      {filteredStores.length > 0 ? (
+      {hasError ? (
+        <div className="card empty-state"><h3>{language === "ar" ? "تعذر تحميل المتاجر" : "Stores could not load"}</h3><p className="muted">{language === "ar" ? "تعذر الاتصال بدليل المتاجر. حاول مرة أخرى." : "The store directory could not be reached. Please try again."}</p><button className="button button--ghost" type="button" onClick={retry}>{language === "ar" ? "إعادة المحاولة" : "Try again"}</button></div>
+      ) : filteredStores.length > 0 ? (
         <div className="store-grid">
           {filteredStores.map((store) => (
             <StoreCard key={store.slug} store={store} />
           ))}
+        </div>
+      ) : allStores.length === 0 ? (
+        <div className="card empty-state">
+          <h3>{language === "ar" ? "لا توجد متاجر بعد" : "No shops yet"}</h3>
+          <p className="muted">
+            {language === "ar"
+              ? "نعمل على انضمام المخابز والمطاعم. تابعونا قريبًا!"
+              : "We're onboarding bakeries and restaurants. Check back soon!"}
+          </p>
         </div>
       ) : (
         <div className="card empty-state">

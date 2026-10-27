@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/lib/api";
-import { getStoreBySlug, LocalizedText, Store, stores as fallbackStores } from "@/data/stores";
+import { LocalizedText, Store } from "@/data/stores";
 
 type StoreVendorType = "bakery" | "restaurant";
 
@@ -67,8 +67,7 @@ type ProductsResponse = {
 };
 
 const STORE_SLUG_SEPARATOR = "--";
-const DELIVERY_DAYS_FALLBACK: LocalizedText = { ar: "يوميًا", en: "Daily" };
-const OPEN_HOURS_FALLBACK: LocalizedText = { ar: "طوال اليوم", en: "Open daily" };
+const OPEN_HOURS_FALLBACK: LocalizedText = { ar: "غير متوفرة", en: "Not provided" };
 const API_ORIGIN = (() => {
   try {
     return new URL(API_BASE_URL).origin;
@@ -138,9 +137,9 @@ function parseOperatingHoursText(value: unknown): string {
   return OPEN_HOURS_FALLBACK.en;
 }
 
-function asNumber(value: unknown, fallback: number): number {
+function asOptionalNumber(value: unknown): number | undefined {
   const numericValue = typeof value === "number" ? value : Number(value);
-  return Number.isFinite(numericValue) ? numericValue : fallback;
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : undefined;
 }
 
 function normalizeVendorImageUrl(value: string | null | undefined): string | null {
@@ -158,7 +157,7 @@ function normalizeVendorImageUrl(value: string | null | undefined): string | nul
 async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     headers: { "Content-Type": "application/json" },
-    cache: "no-store",
+    next: { revalidate: 300 },
   });
 
   const data = (await response.json().catch(() => null)) as T | null;
@@ -170,11 +169,9 @@ async function fetchJson<T>(path: string): Promise<T> {
 }
 
 function toBakeryStore(bakery: BakeryApi, index: number): Store {
-  const city = toLocalizedText(bakery.city, { ar: "الأردن", en: "Jordan" });
-  const neighborhood = toLocalizedText(
-    bakery.addressLine1 || bakery.addressLine2 || bakery.city,
-    city,
-  );
+  const city = bakery.city ? toLocalizedText(bakery.city, { ar: "", en: "" }) : undefined;
+  const address = bakery.addressLine1 || bakery.addressLine2;
+  const neighborhood = address ? toLocalizedText(address, { ar: "", en: "" }) : undefined;
 
   return {
     slug: buildStoreSlug(bakery.name, "bakery", bakery.id),
@@ -183,28 +180,21 @@ function toBakeryStore(bakery: BakeryApi, index: number): Store {
     neighborhood,
     imageUrl: normalizeVendorImageUrl(bakery.logoUrl || bakery.imageUrl || bakery.coverImageUrl),
     category: "bakery",
-    rating: asNumber(bakery.averageRating, 4.5),
-    etaMinutes: 30,
-    deliveryDays: DELIVERY_DAYS_FALLBACK,
+    rating: asOptionalNumber(bakery.averageRating),
     openHours: toLocalizedText(parseOperatingHoursText(bakery.operatingHours), OPEN_HOURS_FALLBACK),
     description: toLocalizedText(bakery.description, {
-      ar: "مخبوزات يومية طازجة.",
-      en: "Fresh daily bakery selections.",
+      ar: "تصفح المنتجات المدرجة لهذا المخبز.",
+      en: "Browse products listed by this bakery.",
     }),
-    specialties: [
-      { ar: "خبز طازج", en: "Fresh Bread" },
-      { ar: "طلبات يومية", en: "Daily Orders" },
-    ],
+    specialties: [],
     gradient: STORE_GRADIENTS.bakery[index % STORE_GRADIENTS.bakery.length],
   };
 }
 
 function toRestaurantStore(restaurant: RestaurantApi, index: number): Store {
-  const city = toLocalizedText(restaurant.city, { ar: "الأردن", en: "Jordan" });
-  const neighborhood = toLocalizedText(
-    restaurant.addressLine1 || restaurant.addressLine2 || restaurant.city,
-    city,
-  );
+  const city = restaurant.city ? toLocalizedText(restaurant.city, { ar: "", en: "" }) : undefined;
+  const address = restaurant.addressLine1 || restaurant.addressLine2;
+  const neighborhood = address ? toLocalizedText(address, { ar: "", en: "" }) : undefined;
   const cuisine = restaurant.cuisineType?.trim();
 
   return {
@@ -214,20 +204,15 @@ function toRestaurantStore(restaurant: RestaurantApi, index: number): Store {
     neighborhood,
     imageUrl: normalizeVendorImageUrl(restaurant.logoUrl || restaurant.imageUrl || restaurant.coverImageUrl),
     category: "restaurant",
-    rating: asNumber(restaurant.averageRating, 4.4),
-    etaMinutes: 35,
-    deliveryDays: DELIVERY_DAYS_FALLBACK,
+    rating: asOptionalNumber(restaurant.averageRating),
     openHours: toLocalizedText(parseOperatingHoursText(restaurant.operatingHours), OPEN_HOURS_FALLBACK),
     description: toLocalizedText(restaurant.description, {
-      ar: "وجبات يومية وتوصيل سريع.",
-      en: "Daily meals with fast delivery.",
+      ar: "تصفح المنتجات المدرجة لهذا المطعم.",
+      en: "Browse products listed by this restaurant.",
     }),
     specialties: cuisine
       ? [toLocalizedText(cuisine, { ar: "قائمة يومية", en: "Daily Menu" })]
-      : [
-          { ar: "قائمة يومية", en: "Daily Menu" },
-          { ar: "توصيل سريع", en: "Fast Delivery" },
-        ],
+      : [],
     gradient: STORE_GRADIENTS.restaurant[index % STORE_GRADIENTS.restaurant.length],
   };
 }
@@ -247,11 +232,14 @@ function applySpecialties(store: Store, products: ProductApi[] | undefined): Sto
 }
 
 export async function fetchStores(): Promise<Store[]> {
-  try {
     const [bakeryResult, restaurantResult] = await Promise.allSettled([
       fetchJson<BakeryListResponse>("/bakeries?limit=100"),
       fetchJson<RestaurantListResponse>("/restaurants?limit=100"),
     ]);
+
+    if (bakeryResult.status === "rejected" && restaurantResult.status === "rejected") {
+      throw new Error("Store directory is unavailable");
+    }
 
     const bakeries =
       bakeryResult.status === "fulfilled"
@@ -292,46 +280,40 @@ export async function fetchStores(): Promise<Store[]> {
       }),
     );
 
-    if (!linkedStores.length) {
-      return fallbackStores;
-    }
-
+    // Return real vendors only — empty when none exist yet (no dummy data).
     return storesWithResolvedLogos.sort((first, second) =>
       first.name.en.localeCompare(second.name.en),
     );
-  } catch {
-    return fallbackStores;
-  }
 }
 
 export async function fetchStoreBySlug(slug: string | null | undefined): Promise<Store | null> {
   if (typeof slug !== "string" || !slug.trim()) return null;
   const parsedSlug = parseStoreSlug(slug);
   if (!parsedSlug) {
-    return getStoreBySlug(slug) ?? null;
+    return null;
   }
 
   try {
     if (parsedSlug.vendorType === "bakery") {
       const [details, products] = await Promise.all([
         fetchJson<BakeryDetailsResponse>(`/bakeries/${parsedSlug.id}`),
-        fetchJson<ProductsResponse>(`/bakeries/${parsedSlug.id}/products?limit=8`),
+        fetchJson<ProductsResponse>(`/bakeries/${parsedSlug.id}/products?limit=8`).catch(() => null),
       ]);
 
       const bakery = details.data?.bakery;
       if (!bakery) return null;
-      return applySpecialties(toBakeryStore(bakery, 0), products.data?.products);
+      return applySpecialties(toBakeryStore(bakery, 0), products?.data?.products);
     }
 
     const [details, products] = await Promise.all([
       fetchJson<RestaurantDetailsResponse>(`/restaurants/${parsedSlug.id}`),
-      fetchJson<ProductsResponse>(`/restaurants/${parsedSlug.id}/products?limit=8`),
+      fetchJson<ProductsResponse>(`/restaurants/${parsedSlug.id}/products?limit=8`).catch(() => null),
     ]);
 
     const restaurant = details.data?.restaurant;
     if (!restaurant) return null;
-    return applySpecialties(toRestaurantStore(restaurant, 0), products.data?.products);
+    return applySpecialties(toRestaurantStore(restaurant, 0), products?.data?.products);
   } catch {
-    return getStoreBySlug(slug) ?? null;
+    return null;
   }
 }

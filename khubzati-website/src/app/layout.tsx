@@ -1,15 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Lato } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { LanguageProvider } from "@/i18n/language-context";
 import { getSiteUrl } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const lato = localFont({
+  src: [
+    { path: "../../public/fonts/Lato-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/Lato-Bold.ttf", weight: "700", style: "normal" }
+  ],
+  display: "swap",
   variable: "--font-body"
 });
 
@@ -20,9 +24,14 @@ const geDinarOne = localFont({
 });
 
 const siteUrl = getSiteUrl();
-const defaultTitle = "Khubzati | Fresh local bread and food routing";
+const defaultTitle = "خبزاتي | اكتشف المخابز والمطاعم المحلية";
 const defaultDescription =
-  "Khubzati connects neighborhood bakeries, restaurants, and cafes with customers through smarter food routing and premium UX.";
+  "اكتشف المخابز والمطاعم المحلية على خبزاتي، وتعرّف على المتاجر المتاحة بالقرب منك.";
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#f5ecdf"
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -34,13 +43,12 @@ export const metadata: Metadata = {
   applicationName: "Khubzati",
   category: "food delivery",
   keywords: [
+    "خبزاتي",
+    "مخابز محلية",
+    "خبز طازج",
+    "مطاعم محلية",
     "Khubzati",
-    "Jordan food delivery",
-    "bakery delivery",
-    "restaurant delivery",
-    "cafe delivery",
-    "local bakeries",
-    "B2B food logistics"
+    "local bakeries"
   ],
   alternates: {
     canonical: "/"
@@ -55,10 +63,10 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     images: [
       {
-        url: "/khubzati-logo.svg",
-        width: 512,
-        height: 512,
-        alt: "Khubzati logo"
+        url: "/images/hero-bread.png",
+        width: 640,
+        height: 640,
+        alt: "خبز طازج من مخبز محلي"
       }
     ]
   },
@@ -66,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
-    images: ["/khubzati-logo.svg"]
+    images: ["/images/hero-bread.png"]
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -94,6 +102,7 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: "Khubzati",
     url: siteUrl,
     logo: `${siteUrl}/khubzati-logo.svg`,
@@ -112,6 +121,7 @@ export default function RootLayout({
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: "Khubzati",
     url: siteUrl,
     inLanguage: ["ar", "en"]
@@ -129,11 +139,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <LanguageProvider>
+          <SmoothScroll />
           <div className="site-bg" aria-hidden="true" />
           <SiteNav />
           <main className="container page-content">{children}</main>
           <SiteFooter />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
